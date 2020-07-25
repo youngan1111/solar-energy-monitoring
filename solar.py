@@ -4,6 +4,8 @@ from datetime import datetime
 import time
 import requests
 import json
+import os
+from dotenv import load_dotenv
 
 driver = webdriver.Chrome('C:\Monitoring\chromedriver')
 weekday = ['월', '화', '수', '목', '금', '토', '일']
@@ -178,13 +180,11 @@ hh = '오늘 총 수익: ' + str(temp) + '원'
 # 텔레그램 전송
 # 텔레그램 id 얻기: https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/getUpdates
 # 텔레그램 전송하기: https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=1006172083&text=hi
-youngan = 'https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=1065066573&text='
-myoungsun = 'https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=807722409&text='
-youngil = 'https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=1006172083&text='
-moonsung = 'https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=1024930293&text='
-jisung = 'https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=1011259901&text='
-jaewan = 'https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=1008166078&text='
-hogab = 'https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=997388561&text='
+youngan =  os.getenv('youngan')
+moonsung = os.getenv('moonsung')
+jisung = os.getenv('jisung')
+jaewan = os.getenv('jaewan')
+hogab = os.getenv('hogab')
 
 r = time.localtime().tm_wday
 time = str(datetime.today().year)+'년'+str(datetime.today().month) + \
@@ -193,6 +193,7 @@ text = time+'%0A'+'%0A'+smpAvgPrice+'%0A' + recprint+'%0A'+'%0A'+smpa+'%0A'+bb+'
     '%0A'+cc+'%0A'+'%0A'+smpc+'%0A'+dd+'%0A'+'%0A' + \
     smpd+'%0A'+ee+'%0A'+'%0A'+generate+'%0A'+hh
 
+# 웹을 통해 텔레그램 메세지 전송
 link = youngan + text
 driver.get(link)
 

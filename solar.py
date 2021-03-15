@@ -16,6 +16,7 @@ weekday = ['월', '화', '수', '목', '금', '토', '일']
 # soup = BeautifulSoup(html, 'html.parser')
 # smp = soup.select('#div1_t > table > tfoot > tr:nth-child(3) > td:nth-child(8)')
 
+# SMP 가격 받아오기
 dt = datetime.now()
 today = f'{dt.strftime("%m.%d")}({weekday[dt.weekday()]})'
 smp = requests.get(
@@ -180,7 +181,7 @@ hh = '오늘 총 수익: ' + str(temp) + '원'
 # 텔레그램 전송
 # 텔레그램 id 얻기: https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/getUpdates
 # 텔레그램 전송하기: https://api.telegram.org/bot1057732762:AAElCINsv1bhcZZC7KNuKxyiv3d6dbmHwe0/sendMessage?chat_id=1006172083&text=hi
-youngan =  os.getenv('youngan')
+youngan = os.getenv('youngan')
 moonsung = os.getenv('moonsung')
 jisung = os.getenv('jisung')
 jaewan = os.getenv('jaewan')
